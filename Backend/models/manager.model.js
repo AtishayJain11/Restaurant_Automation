@@ -2,30 +2,41 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const mealsSchema = new Schema({
-    mealId: {
-        type: Number,
+const managerSchema = new Schema({
+    firstname: {
+        type: String,
         required: true,
-        unique: true
+        trim: true,
     },
-    mealName: {
+    surname: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    phoneNo: {
         type: String,
         required: true,
         trim: true,
         unique: true
     },
-    preptime: {
-        type: Number,
-        required: true,
+    email: {
+        type: String,
+        default: "admin123@restaurant.com",
+        required: false,
+        trim: true,
+        unique: true
     },
-    price: {
-        type: Number,
-        required: true,
-    },
+    password: {
+        type: String,
+        default: "admin@123",
+        required: false,
+        trim: true,
+        minlength: 6
+    }
 }, {
     timestamps: true,
 });
 
-const meals = mongoose.model('meals', mealsSchema);
+const Manager = mongoose.model('Manager', managerSchema);
 
-module.exports = meals;
+module.exports = Manager;
